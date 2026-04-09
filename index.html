@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pra minha nenem❤️</title>
+<title>Pra você ❤️</title>
 
 <style>
 body {
@@ -249,7 +249,7 @@ function toggleMusic() {
 
     if (!tocando) {
         player.playVideo();
-        botao.innerHTML = "⏸";
+        botao.innerHTML = "❚❚";
         tocando = true;
     } else {
         player.pauseVideo();
@@ -300,9 +300,9 @@ function toggleMsg() {
     btn.innerText = box.classList.contains("show") ? "Ocultar mensagem" : "Mostrar mensagem completa";
 }
 
-// Contador desde 10/04/2025 usando UTC
+// Contador desde 10/02/2025
 function atualizar() {
-    const inicio = new Date(Date.UTC(2025,3,10,0,0,0));
+    const inicio = new Date(Date.UTC(2025,1,10,0,0,0)); // mês 1 = fevereiro
     const agora = new Date();
     const diff = agora.getTime() - inicio.getTime();
 
@@ -326,4 +326,4 @@ atualizar();
 <script src="https://www.youtube.com/iframe_api"></script>
 
 </body>
-</html>
+    </html>
