@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pra minha nenem❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #121212;
+    color: white;
+}
+
+/* TOPO */
+.topo {
+    background: linear-gradient(180deg, #b30000, #121212);
+    padding: 20px;
+}
+
+/* CAPA */
+.capa {
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* INFO */
+.titulo {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.artista {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* PLAYER */
+.player {
+    margin-top: 15px;
+}
+
+.barra {
+    width: 100%;
+    height: 4px;
+    background: #404040;
+    border-radius: 2px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.progresso {
+    height: 100%;
+    width: 0%;
+    background: white;
+}
+
+.tempos {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    opacity: 0.6;
+    margin-top: 5px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.play {
+    width: 60px;
+    height: 60px;
+    background: #1db954;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    color: black;
+}
+
+/* CONTEÚDO */
+.section {
+    padding: 15px;
+}
+
+.card {
+    background: #181818;
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+/* FOTO */
+.foto {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* CONTADOR */
+.grid {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.box {
+    text-align: center;
+    font-size: 16px;
+}
+
+/* BOTÃO */
+.botao {
+    margin-top: 10px;
+    background: #2a2a2a;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.3s;
+}
+
+.botao:hover {
+    background: #3a3a3a;
+}
+
+/* MENSAGEM/LETRA */
+.letra-box {
+    margin-top: 15px;
+    background: linear-gradient(180deg, #b30000, #000000);
+    padding: 12px;
+    border-radius: 10px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* prévia de 3 linhas */
+    -webkit-box-orient: vertical;
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+    transition: max-height 0.6s ease;
+}
+
+.letra-box::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(to top, #121212, transparent);
+    pointer-events: none;
+}
+
+.letra-box.show {
+    -webkit-line-clamp: unset; /* expande tudo */
+    max-height: 2000px;
+}
+
+.letra {
+    white-space: pre-line;
+    line-height: 1.6;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topo">
+
+<img class="capa" src="https://img.youtube.com/vi/Zs0tcD7LpuI/maxresdefault.jpg">
+
+<div class="titulo">Vem Ser Minha</div>
+<div class="artista">Charlie Brown Jr.</div>
+
+<div class="player">
+
+<div class="barra" onclick="seek(event)">
+<div class="progresso" id="barra"></div>
+</div>
+
+<div class="tempos">
+<span id="atual">0:00</span>
+<span id="total">0:00</span>
+</div>
+
+<div class="controls">
+<div class="play" onclick="toggleMusic()" id="botao">▶</div>
+</div>
+
+</div>
+
+<iframe id="ytplayer"
+width="0" height="0"
+src="https://www.youtube.com/embed/Zs0tcD7LpuI?enablejsapi=1"
+allow="autoplay">
+</iframe>
+
+</div>
+
+<div class="section">
+
+<!-- CONTADOR -->
+<div class="card">
+<strong>Tempo juntos</strong>
+<div class="grid" id="contador"></div>
+<img class="foto" src="https://i.imgur.com/PRLmdOP.jpeg">
+</div>
+
+<!-- MENSAGEM ESPECIAL COMO LETRA -->
+<div class="card">
+<strong>Mensagem especial</strong>
+
+<div class="letra-box" id="msgBox">
+<div class="letra">
+O nosso primeiro ano juntos de muitos que ainda vão vir minha neném. Você não tem noção do quanto eu tô feliz por tudo isso que a gente construiu. Desde o dia que eu te conheci, desde quando a gente começou a se aproximar, eu estou mudando pra melhor. Eu sinto que estou melhorando com você do meu lado, eu tô me sentindo realmente amado. Eu faria qualquer coisa por você. Você me tem por inteiro, de um jeito que ninguém nunca teve. E quanto mais o tempo passa, mais certeza eu tenho de que é você que eu quero pra minha vida. É com você que eu quero construir nosso futuro e até uma família. Eu não me vejo sem você em momento algum. Eu sou completamente apaixonado e obcecado por você. E não é uma obsessão passageira, não é coisa de momento. Eu quero viver tudo ao seu lado, cada segundo. Eu não quero te perder, nem ficar longe de você, eu simplesmente não consigo me imaginar sem você. Tudo que eu sinto por você é verdadeiro. Eu sei que muito fdp já te machucou, já fez mrd com você, mas eu não sou assim. Eu tô aqui pra você e por você, pra cuidar de você, pra te dar segurança. Pra te tratar igual uma bebezinha recém nascida. Você não precisa ter medo de eu fazer algo contra você nem contra nosso relacionamento, eu não vou te abandonar ou fazer alguma mrd com vc meu amor. Meus sentimentos por você não são algo superficial. Eu quero entrelaçar nossas almas, eu quero te ter por completo em todos os sentidos. Eu quero fazer um pacto de sangue com você e não estou falando isso da boca pra fora. Eu não quero algo momentâneo com você, eu te quero pra vida inteira. Eu escolho você hoje, amanhã e todos os dias até nossa morte. Eu realmente quero te ter ao meu lado e pode ter certeza que o que sentimos é totalmente recíproco. Eu te agradeço por ser essa garota incrível que você é comigo, por me aguentar aqui com você todos os dias, eu te perturbando e enchendo o saco. Sem você eu realmente não vivo, eu preciso de você e não suporto ficar sem você. Porque a ideia de te perder não existe pra mim. Eu não consigo aceitar isso, eu não consigo imaginar você longe vivendo sem mim, porque na minha cabeça a gente é uma alma só, você me tem por inteiro, e eu te tenho por inteira. Não só uma parte, eu quero tudo de você, cada pensamento, cada sentimento, cada pedaço. Eu quero ser o lugar onde você fica, onde você vive, onde você pertence. Eu sei que posso ser uma pessoa meio ciumenta (possessivo e obsessivo) com você, mas meus sentimentos são bem mais profundos, é realmente amor e nunca mudou em todo esse tempo. Não é por desconfiança, é mais porque eu não gosto da ideia de alguém te olhando como eu olho, ou querendo ter um espaço que é meu. Eu não vou deixar ninguém chegar perto do que é meu. Eu cuido, eu protejo, eu fico. Você não precisa olhar pros lados, nem ter medo de algo, porque eu tô aqui com você. Eu também sou completamente seu e sem mentiras entre nós, não temos segredos um do outro nem nada disso, nosso relacionamento é completamente transparente e sempre será. O nosso primeiro ano juntos foi só o começo, e de verdade, eu não consigo ver um fim pra gente. Eu me apeguei e me apaixonei por você de um jeito que nem eu sei explicar direito. Quanto mais o tempo passa, mais eu quero você perto, mais eu quero saber de você, mais eu sinto falta até em momentos que acabou de sair. Eu realmente te amo com a minha alma, eu te amo meu amor, hoje é nosso dia minha neném.
+</div>
+</div>
+<div class="botao" onclick="toggleMsg()" id="btnMsg">
+Mostrar mensagem completa
+</div>
+
+</div>
+
+</div>
+
+<script>
+let player;
+let tocando = false;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('ytplayer', {
+        events: {
+            'onReady': () => {
+                setInterval(atualizarBarra, 1000);
+            }
+        }
+    });
+}
+
+function toggleMusic() {
+    if (!player) return;
+
+    if (!tocando) {
+        player.playVideo();
+        botao.innerHTML = "⏸";
+        tocando = true;
+    } else {
+        player.pauseVideo();
+        botao.innerHTML = "▶";
+        tocando = false;
+    }
+}
+
+function atualizarBarra() {
+    if (!player || !player.getDuration) return;
+
+    let atual = player.getCurrentTime();
+    let total = player.getDuration();
+
+    if (!total) return;
+
+    let porcentagem = (atual / total) * 100;
+    document.getElementById("barra").style.width = porcentagem + "%";
+
+    document.getElementById("atual").innerText = formatar(atual);
+    document.getElementById("total").innerText = formatar(total);
+}
+
+function seek(e) {
+    if (!player) return;
+
+    const barra = e.currentTarget;
+    const largura = barra.offsetWidth;
+    const clique = e.offsetX;
+
+    const porcentagem = clique / largura;
+    const tempo = player.getDuration() * porcentagem;
+
+    player.seekTo(tempo);
+}
+
+function formatar(s) {
+    let min = Math.floor(s / 60);
+    let sec = Math.floor(s % 60);
+    return min + ":" + (sec < 10 ? "0" : "") + sec;
+}
+
+// Mensagem expandir/recolher
+function toggleMsg() {
+    const box = document.getElementById("msgBox");
+    box.classList.toggle("show");
+    const btn = document.getElementById("btnMsg");
+    btn.innerText = box.classList.contains("show") ? "Ocultar mensagem" : "Mostrar mensagem completa";
+}
+
+// Contador desde 10/04/2025 usando UTC
+function atualizar() {
+    const inicio = new Date(Date.UTC(2025,3,10,0,0,0));
+    const agora = new Date();
+    const diff = agora.getTime() - inicio.getTime();
+
+    const dias = Math.floor(diff / (1000*60*60*24));
+    const horas = Math.floor((diff / (1000*60*60)) % 24);
+    const minutos = Math.floor((diff / (1000*60)) % 60);
+    const segundos = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("contador").innerHTML = `
+        <div class="box">${dias}<br>Dias</div>
+        <div class="box">${horas}<br>Horas</div>
+        <div class="box">${minutos}<br>Min</div>
+        <div class="box">${segundos}<br>Seg</div>
+    `;
+}
+
+setInterval(atualizar, 1000);
+atualizar();
+</script>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+
+</body>
+</html>
