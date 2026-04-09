@@ -107,11 +107,13 @@ body {
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
+    flex-wrap: wrap;
 }
 
 .box {
     text-align: center;
     font-size: 16px;
+    min-width: 60px;
 }
 
 /* BOTÃO */
@@ -231,87 +233,31 @@ Mostrar mensagem completa
 </div>
 
 <script>
-let player;
-let tocando = false;
-
-function onYouTubeIframeAPIReady() {
-    player = new YT.Player('ytplayer', {
-        events: {
-            'onReady': () => {
-                setInterval(atualizarBarra, 1000);
-            }
-        }
-    });
-}
-
-function toggleMusic() {
-    if (!player) return;
-
-    if (!tocando) {
-        player.playVideo();
-        botao.innerHTML = "❚❚";
-        tocando = true;
-    } else {
-        player.pauseVideo();
-        botao.innerHTML = "▶";
-        tocando = false;
-    }
-}
-
-function atualizarBarra() {
-    if (!player || !player.getDuration) return;
-
-    let atual = player.getCurrentTime();
-    let total = player.getDuration();
-
-    if (!total) return;
-
-    let porcentagem = (atual / total) * 100;
-    document.getElementById("barra").style.width = porcentagem + "%";
-
-    document.getElementById("atual").innerText = formatar(atual);
-    document.getElementById("total").innerText = formatar(total);
-}
-
-function seek(e) {
-    if (!player) return;
-
-    const barra = e.currentTarget;
-    const largura = barra.offsetWidth;
-    const clique = e.offsetX;
-
-    const porcentagem = clique / largura;
-    const tempo = player.getDuration() * porcentagem;
-
-    player.seekTo(tempo);
-}
-
-function formatar(s) {
-    let min = Math.floor(s / 60);
-    let sec = Math.floor(s % 60);
-    return min + ":" + (sec < 10 ? "0" : "") + sec;
-}
-
-// Mensagem expandir/recolher
-function toggleMsg() {
-    const box = document.getElementById("msgBox");
-    box.classList.toggle("show");
-    const btn = document.getElementById("btnMsg");
-    btn.innerText = box.classList.contains("show") ? "Ocultar mensagem" : "Mostrar mensagem completa";
-}
-
 // Contador desde 10/02/2025
-function atualizar() {
-    const inicio = new Date(Date.UTC(2025,1,10,0,0,0)); // mês 1 = fevereiro
+function atualizarContador() {
+    const inicio = new Date(2025, 1, 10, 0, 0, 0); // mês 1 = fevereiro
     const agora = new Date();
-    const diff = agora.getTime() - inicio.getTime();
 
-    const dias = Math.floor(diff / (1000*60*60*24));
-    const horas = Math.floor((diff / (1000*60*60)) % 24);
-    const minutos = Math.floor((diff / (1000*60)) % 60);
-    const segundos = Math.floor((diff / 1000) % 60);
+    let anos = agora.getFullYear() - inicio.getFullYear();
+    let meses = agora.getMonth() - inicio.getMonth();
+    let dias = agora.getDate() - inicio.getDate();
+    let horas = agora.getHours() - inicio.getHours();
+    let minutos = agora.getMinutes() - inicio.getMinutes();
+    let segundos = agora.getSeconds() - inicio.getSeconds();
+
+    if (segundos < 0) { segundos += 60; minutos -= 1; }
+    if (minutos < 0) { minutos += 60; horas -= 1; }
+    if (horas < 0) { horas += 24; dias -= 1; }
+    if (dias < 0) {
+        const mesesComDias = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+        dias += mesesComDias;
+        meses -= 1;
+    }
+    if (meses < 0) { meses += 12; anos -= 1; }
 
     document.getElementById("contador").innerHTML = `
+        <div class="box">${anos}<br>Anos</div>
+        <div class="box">${meses}<br>Meses</div>
         <div class="box">${dias}<br>Dias</div>
         <div class="box">${horas}<br>Horas</div>
         <div class="box">${minutos}<br>Min</div>
@@ -319,8 +265,67 @@ function atualizar() {
     `;
 }
 
-setInterval(atualizar, 1000);
-atualizar();
+// Player do YouTube
+let player;
+let tocando = false;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('ytplayer', {
+        events: { 'onReady': () => setInterval(atualizarBarra, 1000) }
+    });
+}
+
+function toggleMusic() {
+    if (!player) return;
+    const btn = document.getElementById("botao");
+    if (!tocando) {
+        player.playVideo();
+        btn.innerHTML = "⏸";
+        tocando = true;
+    } else {
+        player.pauseVideo();
+        btn.innerHTML = "▶";
+        tocando = false;
+    }
+}
+
+function atualizarBarra() {
+    if (!player || !player.getDuration) return;
+    let atual = player.getCurrentTime();
+    let total = player.getDuration();
+    if (!total) return;
+    let porcentagem = (atual / total) * 100;
+    document.getElementById("barra").style.width = porcentagem + "%";
+    document.getElementById("atual").innerText = formatarTempo(atual);
+    document.getElementById("total").innerText = formatarTempo(total);
+}
+
+function seek(e) {
+    if (!player) return;
+    const barra = e.currentTarget;
+    const largura = barra.offsetWidth;
+    const clique = e.offsetX;
+    const tempo = player.getDuration() * (clique / largura);
+    player.seekTo(tempo);
+}
+
+function formatarTempo(s) {
+    let min = Math.floor(s / 60);
+    let sec = Math.floor(s % 60);
+    return min + ":" + (sec < 10 ? "0" : "") + sec;
+}
+
+// Mensagem especial expandir/recolher
+function toggleMsg() {
+    const box = document.getElementById("msgBox");
+    box.classList.toggle("show");
+    const btn = document.getElementById("btnMsg");
+    btn.innerText = box.classList.contains("show") ? "Ocultar mensagem" : "Mostrar mensagem completa";
+}
+
+// Atualiza contador a cada segundo
+setInterval(atualizarContador, 1000);
+atualizarContador();
 </script>
 
 <script src="https://www.youtube.com/iframe_api"></script>
